@@ -210,6 +210,8 @@ for w, true, pred in zip(X_test[i], y_true, p[0]):
 </p>
 
 
+<br>
+
 ### Sample Text Prediction
 <img  src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/5.png" width="150" height="250">
 
