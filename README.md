@@ -42,6 +42,8 @@ To develop an LSTM-based model for recognizing the named entities in the text.
 </p>
 
 <br>
+<br>
+<br>
 
 ## Neural Network Model
 
