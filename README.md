@@ -37,9 +37,11 @@ To develop an LSTM-based model for recognizing the named entities in the text.
 - We have to vectorize these words using Embedding techniques to train our model.
 - Bidirectional Recurrent Neural Networks connect two hidden layers of opposite directions to the same output.
 
-<p align="left">
+<p align="center">
 <img src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/1.PNG" width="250" height="500">
 </p>
+
+<br>
 
 ## Neural Network Model
 
