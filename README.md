@@ -1,33 +1,69 @@
-# Named Entity Recognition
+Exp.No : 06 
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+&emsp;
+Date : 16.10.2023
+<br>
+# Named Entity Recognition using LSTM
 
 ## AIM
 
 To develop an LSTM-based model for recognizing the named entities in the text.
 
 ## Problem Statement and Dataset
-We aim to develop an LSTM-based neural network model using Bidirectional Recurrent Neural Networks for recognizing the named entities in the text. The dataset used has a number of sentences, and each words have their tags. We have to vectorize these words using Embedding techniques to train our model. Bidirectional Recurrent Neural Networks connect two hidden layers of opposite directions to the same output.
+- We aim to develop an LSTM-based neural network model using Bidirectional Recurrent Neural Networks for recognizing the named entities in the text.
+- The dataset used has a number of sentences, and each words have their tags.
+- We have to vectorize these words using Embedding techniques to train our model.
+- Bidirectional Recurrent Neural Networks connect two hidden layers of opposite directions to the same output.
 
-![](1.PNG)
+<p align="left">
+<img src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/1.PNG" width="150" height="300">
+</p>
 
 ## Neural Network Model
 
-![](2.jpg)
+<p align="center">
+<img src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/2.jpg" width="650" height="450">
+</p>
+
 
 ## DESIGN STEPS
 
-- STEP 1: Import the necessary packages.
-- STEP 2: Read the dataset, and fill the null values using forward fill.
-- STEP 3: Create a list of words, and tags. Also find the number of unique words and tags in the dataset.
-- STEP 4: Create a dictionary for the words and their Index values. Do the same for the tags as well,Now we move to moulding the data for training and testing.
-- STEP 5: We do this by padding the sequences,This is done to acheive the same length of input data.
-- STPE 6: We build a build a model using Input, Embedding, Bidirectional LSTM, Spatial Dropout, Time Distributed Dense Layers.
-- STEP 7: We compile the model and fit the train sets and validation sets,We plot the necessary graphs for analysis,A custom prediction is done to test the model manually.
-Write your own steps
+-  **Step 1:** Import the necessary packages.
+-  **Step 2:** Read the dataset, and fill the null values using forward fill.
+-  **Step 3:** Create a list of words, and tags. Also find the number of unique words and tags in the dataset.
+-  **Step 4:** Create a dictionary for the words and their Index values. Do the same for the tags as well,Now we move to moulding the data for training and testing.
+-  **Step 5:** We do this by padding the sequences,This is done to acheive the same length of input data.
+-  **Step 6:** We build a build a model using Input, Embedding, Bidirectional LSTM, Spatial Dropout, Time Distributed Dense Layers.
+-  **Step 7:** We compile the model and fit the train sets and validation sets,We plot the necessary graphs for analysis, A custom prediction is done to test the model manually.
+
 
 ## PROGRAM
-#### Program by : Kaushika A
-#### Register No : 212221230048
+> Developed by: Kaushika A <br>
+> Register no: 212221230048
 
+**importing libraries**
 ```python
 import pandas as pd
 import numpy as np
@@ -40,7 +76,7 @@ from keras import layers
 from keras.models import Model
 ```
 
-
+**loading dataset**
 ```python
 data = pd.read_csv("ner_dataset.csv", encoding="latin1")
 data.head(50)
@@ -49,6 +85,7 @@ data = data.fillna(method="ffill")
 data.head(50)
 ```
 
+**list of unique word and tag**
 ```python
 print("Unique words in corpus:", data['Word'].nunique())
 print("Unique tags in corpus:", data['Tag'].nunique())
@@ -62,6 +99,7 @@ num_tags = len(tags)
 print("Unique tags are:", tags)
 ```
 
+**grouping by sentence class**
 ```python
 class SentenceGetter(object):
     def __init__(self, data):
@@ -82,7 +120,6 @@ class SentenceGetter(object):
         except:
             return None
 ```
-
 ```python
 getter = SentenceGetter(data)
 sentences = getter.sentences
@@ -93,6 +130,7 @@ tag2idx = {t: i for i, t in enumerate(tags)}
 X1 = [[word2idx[w[0]] for w in s] for s in sentences]
 ```
 
+**x and y data**
 ```python
 max_len = 100
 X = sequence.pad_sequences(maxlen=max_len,
@@ -110,6 +148,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y,
                                                     test_size=0.2, random_state=1)
 ```
 
+**network model**
 ```python
 input_word = layers.Input(shape=(max_len,))
 
@@ -137,6 +176,7 @@ model.fit(x=X_train, y=y_train, validation_data=(X_test,y_test),
           batch_size=50, epochs=3,)
 ```
 
+**metrics**
 ```python
 metrics = pd.DataFrame(history.history)
 metrics.head()
@@ -145,6 +185,7 @@ metrics[['accuracy','val_accuracy']].plot()
 metrics[['loss','val_loss']].plot()
 ```
 
+**prediction for single input**
 ```python
 i = 20
 p = model.predict(np.array([X_test[i]]))
@@ -159,12 +200,14 @@ for w, true, pred in zip(X_test[i], y_true, p[0]):
 ## OUTPUT
 
 ### Training Loss, Validation Loss Vs Iteration Plot
-![](3.png)
+<p float="left">
+  <img  src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/3.png" width="300" height="200">
+  <img  src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/4.png" width="300" height="200">
+</p>
 
-![](4.png)
 
 ### Sample Text Prediction
-![](5.png)
+<img  src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/5.png" width="150" height="250">
 
 ## RESULT
 Thus, an LSTM-based model for recognizing the named entities in the text is successfully developed.
