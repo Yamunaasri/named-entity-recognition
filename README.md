@@ -214,7 +214,7 @@ for w, true, pred in zip(X_test[i], y_true, p[0]):
 <br>
 
 ### Sample Text Prediction
-<img  src="https://github.com/Kaushika-Anandh/named-entity-recognition/blob/main/5.png" width="150" height="250">
+![Screenshot 2024-04-22 151929](https://github.com/Kaushika-Anandh/named-entity-recognition/assets/115707860/e37fcccd-caed-4204-ac8b-88219da484be)
 
 ## RESULT
 Thus, an LSTM-based model for recognizing the named entities in the text is successfully developed.
